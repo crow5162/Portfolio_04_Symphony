@@ -18,25 +18,21 @@ image::~image()
 
 HRESULT image::init(int width, int height)
 {
-	//백버퍼가 존재하면 메모리 해제
 	if (_imageInfo != NULL) release();
 
 	HDC hdc = GetDC(_hWnd);
 
 	_imageInfo = new IMAGE_INFO;
-	_imageInfo->hMemDC = CreateCompatibleDC(hdc);	// 빈 DC영역 하나를 만든다
+	_imageInfo->hMemDC = CreateCompatibleDC(hdc);	
 	_imageInfo->hBit = (HBITMAP)CreateCompatibleBitmap(hdc, width, height);
 	_imageInfo->hOBit = (HBITMAP)SelectObject(_imageInfo->hMemDC, _imageInfo->hBit);
 	_imageInfo->width = width;
 	_imageInfo->height = height;
 
-	//위에 셋팅이 실패해서 백버퍼가 생성되지 않았다면
 	if (_imageInfo == NULL)
 	{
-		//메모리 해제
 		release();
 
-		//그리고 실패했단 메세지를 호출해라
 		return E_FAIL;
 	}
 
@@ -61,7 +57,6 @@ HRESULT image::init(int width, int height)
 
 HRESULT image::init(const DWORD resID, int width, int height, BOOL trans, COLORREF transColor)
 {
-	//호옥시이 이미지 정보가 초기화 되어있지 않다면 해제를 시켜라
 	if (_imageInfo != NULL) release();
 
 	HDC hdc = GetDC(_hWnd);
@@ -106,10 +101,8 @@ HRESULT image::init(const DWORD resID, int width, int height, BOOL trans, COLORR
 
 HRESULT image::init(const char * fileName, int width, int height, BOOL trans, COLORREF transColor)
 {
-	//찾고자하는 이미지 파일 이름이 없으면 실패를 출력해라
 	if (fileName == NULL) return E_FAIL;
 
-	//호옥시이 이미지 정보가 초기화 되어있지 않다면 해제를 시켜라
 	if (_imageInfo != NULL) release();
 	
 	HDC hdc = GetDC(_hWnd);
@@ -123,7 +116,6 @@ HRESULT image::init(const char * fileName, int width, int height, BOOL trans, CO
 	_imageInfo->width = width;
 	_imageInfo->height = height;
 
-	//파일이름의 길이를 알아온다
 	int len = strlen(fileName);
 
 	_fileName = new CHAR[len + 1];
@@ -159,10 +151,8 @@ HRESULT image::init(const char * fileName, int width, int height, BOOL trans, CO
 
 HRESULT image::init(const char * fileName, float x, float y, int width, int height, int frameX, int frameY, BOOL trans, COLORREF transColor)
 {
-	//찾고자하는 이미지 파일 이름이 없으면 실패를 출력해라
 	if (fileName == NULL) return E_FAIL;
 
-	//호옥시이 이미지 정보가 초기화 되어있지 않다면 해제를 시켜라
 	if (_imageInfo != NULL) release();
 
 	HDC hdc = GetDC(_hWnd);
@@ -182,7 +172,6 @@ HRESULT image::init(const char * fileName, float x, float y, int width, int heig
 	_imageInfo->maxFrameX = frameX - 1;
 	_imageInfo->maxFrameY = frameY - 1;
 
-	//파일이름의 길이를 알아온다
 	int len = strlen(fileName);
 
 	_fileName = new CHAR[len + 1];
@@ -218,10 +207,8 @@ HRESULT image::init(const char * fileName, float x, float y, int width, int heig
 
 HRESULT image::init(const char * fileName, int width, int height, int frameX, int frameY, BOOL trans, COLORREF transColor)
 {
-	//찾고자하는 이미지 파일 이름이 없으면 실패를 출력해라
 	if (fileName == NULL) return E_FAIL;
 
-	//호옥시이 이미지 정보가 초기화 되어있지 않다면 해제를 시켜라
 	if (_imageInfo != NULL) release();
 
 	HDC hdc = GetDC(_hWnd);
@@ -239,7 +226,6 @@ HRESULT image::init(const char * fileName, int width, int height, int frameX, in
 	_imageInfo->maxFrameX = frameX - 1;
 	_imageInfo->maxFrameY = frameY - 1;
 
-	//파일이름의 길이를 알아온다
 	int len = strlen(fileName);
 
 	_fileName = new CHAR[len + 1];
@@ -303,10 +289,8 @@ void image::setTransColor(BOOL trans, COLORREF transColor)
 
 void image::render(HDC hdc)
 {
-	//트랜스 컬러 처리를 해야하냐
 	if (_trans)
 	{
-		//화면에 뿌려줄때 특정 픽셀값을 빼고 출력해준다
 		GdiTransparentBlt(
 			hdc,					//복사될 영역의 DC 
 			_imageInfo->x,			//복사될 좌표 X
@@ -320,7 +304,6 @@ void image::render(HDC hdc)
 			_transColor);			//복사해올때 제외할 칼라
 
 	}
-	//아니냐
 	else
 	{
 		BitBlt(hdc, _imageInfo->x, _imageInfo->y, _imageInfo->width, _imageInfo->height,
@@ -330,10 +313,8 @@ void image::render(HDC hdc)
 
 void image::render(HDC hdc, int destX, int destY)
 {
-	//트랜스 컬러 처리를 해야하냐
 	if (_trans)
 	{
-		//화면에 뿌려줄때 특정 픽셀값을 빼고 출력해준다
 		GdiTransparentBlt(
 			hdc,					//복사될 영역의 DC 
 			destX,					//복사될 좌표 X
@@ -347,7 +328,6 @@ void image::render(HDC hdc, int destX, int destY)
 			_transColor);			//복사해올때 제외할 칼라
 		
 	}
-	//아니냐
 	else
 	{
 		BitBlt(hdc, destX, destY, _imageInfo->width, _imageInfo->height,
@@ -357,10 +337,8 @@ void image::render(HDC hdc, int destX, int destY)
 
 void image::render(HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight)
 {
-	//트랜스 컬러 처리를 해야하냐
 	if (_trans)
 	{
-		//화면에 뿌려줄때 특정 픽셀값을 빼고 출력해준다
 		GdiTransparentBlt(
 			hdc,					//복사될 영역의 DC 
 			destX,					//복사될 좌표 X
@@ -374,7 +352,6 @@ void image::render(HDC hdc, int destX, int destY, int sourX, int sourY, int sour
 			_transColor);			//복사해올때 제외할 칼라
 
 	}
-	//아니냐
 	else
 	{
 		BitBlt(hdc, destX, destY, sourWidth, sourHeight,
@@ -385,10 +362,8 @@ void image::render(HDC hdc, int destX, int destY, int sourX, int sourY, int sour
 
 void image::frameRender(HDC hdc, int destX, int destY)
 {
-	//트랜스 컬러 처리를 해야하냐
 	if (_trans)
 	{
-		//화면에 뿌려줄때 특정 픽셀값을 빼고 출력해준다
 		GdiTransparentBlt(
 			hdc,												//복사될 영역의 DC 
 			destX,												//복사될 좌표 X
@@ -403,7 +378,6 @@ void image::frameRender(HDC hdc, int destX, int destY)
 			_transColor);										//복사해올때 제외할 칼라
 
 	}
-	//아니냐
 	else
 	{
 		BitBlt(hdc, destX, destY, 
@@ -420,10 +394,8 @@ void image::frameRender(HDC hdc, int destX, int destY, int currentFrameX, int cu
 	_imageInfo->currentFrameX = currentFrameX;
 	_imageInfo->currentFrameY = currentFrameY;
 
-	//트랜스 컬러 처리를 해야하냐
 	if (_trans)
 	{
-		//화면에 뿌려줄때 특정 픽셀값을 빼고 출력해준다
 		GdiTransparentBlt(
 			hdc,												//복사될 영역의 DC 
 			destX,												//복사될 좌표 X

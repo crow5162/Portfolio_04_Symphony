@@ -120,10 +120,8 @@ void action::moving()
 
 	float elapsedTime = TIMEMANAGER->getElapsedTime();
 
-	//200정도의 거리를 2초에 걸쳐서 도달해야한다면 속도값을 구해줌
 	float moveSpeed = (elapsedTime / _time) * _travelRange;
 
-	//이미지를 도착지점까지 각도와 속도를 맞춰서 원하는 시간에 도달케 한다
 	_image->setX(_image->getX() + cosf(_angle) * moveSpeed);
 	_image->setY(_image->getY() + (-sinf(_angle) * moveSpeed));
 
@@ -152,10 +150,8 @@ void action::TestMoving()
 
 	float elapsedTime = TIMEMANAGER->getElapsedTime();
 
-	//200정도의 거리를 2초에 걸쳐서 도달해야한다면 속도값을 구해줌
 	float moveSpeed = (elapsedTime / _time) * _travelRange;
 
-	//이미지를 도착지점까지 각도와 속도를 맞춰서 원하는 시간에 도달케 한다
 	_startX += cosf(_angle) * moveSpeed;
 	_startY += -sinf(_angle) * moveSpeed;
 

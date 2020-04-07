@@ -18,7 +18,6 @@ effect::~effect()
 
 HRESULT effect::init(image* effectImage, int frameW, int frameH, int fps, float elapsedTime)
 {
-	//이펙트 이미지가 없으면 실패를 띄워라
 	if (!effectImage) return E_FAIL;
 
 	_isRunning = false;
@@ -43,12 +42,10 @@ void effect::release()
 
 void effect::update()
 {
-	//이펙트 애니메이션 실행 변수가 false면 실행하지마라
 	if (!_isRunning) return;
 
 	_effectAnimation->frameUpdate(_elapsedTime);
 
-	//만약 애니메이션 재생신호가 false면 이펙트를 꺼라
 	if (!_effectAnimation->isPlay()) killEffect();
 
 }
@@ -66,7 +63,6 @@ void effect::startEffect(int x, int y)
 {
 	if (!_effectImage || !_effectAnimation) return;
 
-	//일단 중앙값으로... 레탑들은 레탑으로 해...
 	_x = x - (_effectAnimation->getFrameWidth() / 2);
 	_y = y - (_effectAnimation->getFrameHeight() / 2);
 

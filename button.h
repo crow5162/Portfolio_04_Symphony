@@ -1,15 +1,8 @@
 #pragma once
 #include "gameNode.h"
 
-//콜백함수 == 함수포인터
 typedef void(*CALLBACK_FUNCTION)(void);
 
-//<Functional> 라이브러리를 사용하면 글로벌 영역에 선언한 콜백함수에 매개변수를 사용할 수 있음.
-//std::bind, std::move, std::Function 
-
-//callback & delegate <--- 차이점을 찾아보세염
-
-//Lambda식 
 
 enum BUTTONDIRECTION
 {
