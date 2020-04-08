@@ -14,7 +14,6 @@ timer::~timer()
 
 HRESULT timer::init()
 {
-	//CPU의 응답시간(반응시간) 체크를 하여 받아둔다
 	if (QueryPerformanceFrequency((LARGE_INTEGER*)&_periodFrequency))
 	{
 		QueryPerformanceCounter((LARGE_INTEGER*)&_lastTime);
@@ -32,14 +31,10 @@ HRESULT timer::init()
 
 void timer::tick(float lockFPS)
 {
-	//현재 반응 주기를 담는다
 	QueryPerformanceCounter((LARGE_INTEGER*)&_curTime);
 
-	//deltaTime을 뽑는다
 	_timeElapsed = (_curTime - _lastTime) * _timeScale;
 
-	//Frame Lock을 걸어서 deltaTime 주기를 계속 갱신한다
-	//Frame Skipping을 한다
 	if (lockFPS > 0.0f)
 	{
 		while (_timeElapsed < 1.0f / lockFPS)

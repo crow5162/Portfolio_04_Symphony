@@ -51,9 +51,6 @@ void soundManager::update()
 	//사운드 System 계속적으로 업데이트
 	_system->update();
 
-	//볼륨이 바뀌거나 
-	//재생이 끝난 사운드를 채널에서 빼내는등의 다양한
-	//작업을 자동으로 해준다
 }
 
 void soundManager::addSound(string keyName, string soundName, bool bgm, bool loop)

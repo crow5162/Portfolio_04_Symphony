@@ -53,22 +53,11 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmd
 
 	ShowWindow(_hWnd, cmdShow);
 
-	//메시지 루프 돌기이전에
 	if (FAILED(_pg.init()))
 	{
 
 		return 0;
 	}
-	/*
-	while (GetMessage(&message, 0, 0, 0))
-	{
-		TranslateMessage(&message);
-		DispatchMessage(&message);
-	}
-	*/
-	//PeekMessage를 끄는 이유는 윈도우 자체 메시지 버튼에서 눌려졌을때만 메시지가 가야하는데
-	//픽메세지는 계속해서 루프도니까 너무 화면이 심하게 껌뻑거려서 잠깐 끈거임
-	//당연하겠지만 원래 우리가 이미지로 씌워서 버튼 사용할꺼면 픽메세지로 해도 무방!
 
 	
 	while (true)

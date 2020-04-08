@@ -48,6 +48,7 @@ void Alucard::CharacterPixelGround()
 				}
 			}
 		}
+
 		//Map_02 의 픽셀 충돌 설정입니다.
 		if (SCENEMANAGER->getSceneNumber() == 2)
 		{

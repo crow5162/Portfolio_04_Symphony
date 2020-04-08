@@ -1,7 +1,4 @@
 #pragma once
-//=========================================
-// ## 2019.11.15 ## Image ##
-//=========================================
 
 #include "animation.h"
 
@@ -23,23 +20,23 @@ public:
 		HDC hMemDC;
 		HBITMAP hBit;
 		HBITMAP hOBit;
-		float x;			//이미지 뿌려질 곳의 X(left)
-		float y;			//이미지 뿌려질 곳의 Y(top)
-		int width;			//이미지 전체 가로크기
-		int height;			//이미지 전체 세로크기
-		int currentFrameX;	//현재 프레임 가로번호 (X열)
-		int currentFrameY;	//현재 프레임 세로번호 (Y열)
-		int maxFrameX;		//최대 프레임 번호 가로
-		int maxFrameY;		//최대 프레임 번호 세로
-		int frameWidth;		//한 프레임의 가로크기
-		int frameHeight;	//한 프레임의 세로크기
+		float x;			
+		float y;			
+		int width;			
+		int height;			
+		int currentFrameX;	
+		int currentFrameY;	
+		int maxFrameX;		
+		int maxFrameY;		
+		int frameWidth;		
+		int frameHeight;	
 
-		bool isAlpha;		//알파 렌더 해야하나 
-		BYTE alpha;			//알파값 
+		bool isAlpha;		
+		BYTE alpha;			
 		BYTE loadType;
 
-		bool isRotate;		//회전 해야하나 
-		float rotationAngle;//회전 각도 
+		bool isRotate;		
+		float rotationAngle;
 
 
 		tagImageInfo()
@@ -69,10 +66,10 @@ private:
 	BOOL			_trans;
 	COLORREF		_transColor;
 
-	BLENDFUNCTION _blendFunc;	//알파블렌드 관련 함수들
-	LPIMAGE_INFO  _blendImage;	//알파블렌드 처리할 이미지
+	BLENDFUNCTION _blendFunc;	
+	LPIMAGE_INFO  _blendImage;	
 
-	LPIMAGE_INFO _rotateImage;	//회전 처리할 이미지 
+	LPIMAGE_INFO _rotateImage;	
 
 public:
 	image();
@@ -188,7 +185,6 @@ public:
 	{
 		_imageInfo->currentFrameX = frameX;
 
-		//프레임번호가 최대프레임번호를 넘어가면 마지막 프레임으로 고정
 		if (frameX > _imageInfo->maxFrameX)
 		{
 			_imageInfo->currentFrameX = _imageInfo->maxFrameX;

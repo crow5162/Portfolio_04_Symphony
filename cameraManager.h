@@ -16,8 +16,6 @@ private:
 	HDC _worldDC;
 	image* _worldImage;
 
-	//HDC _mapToolDC;
-	//image* _mapToolImage;
 
 	bool _isCameraMoveX;
 	bool _isCameraMoveY;
@@ -36,14 +34,13 @@ public:
 	float get_CameraSize_X() { return _cameraSizeX; }
 	float get_CameraSize_Y() { return _cameraSizeY; }
 
-	//카메라 월드 사이즈 셋팅 (Scene 넘어갈떄마다 이미지 사이즈 바뀔때 Init에서 초기화 해주셈.)
 	void set_CameraWorldSize(float WorldSizeX, float WorldSizeY);
 	//월드 카메라 사이즈 Getter (현재 월드 카메라 사이즈 가져옵니다.)
 	float getWorldCameraSize() { return _cameraWorldSizeX; }
 
 	// 카메라의 좌표 
 	void set_CameraXY(int x, int y);
-	//카메라세팅 (기준 x, 기준 y, 빠른카메라 bool, 화면밖 예외처리 bool)
+
 	void set_CameraXY(float x, float y, bool fast = FALSE, bool cameracorrection = FALSE);
 	void set_CameraXY(POINT xy);
 	void set_CameraXY(RECT rc);
@@ -51,22 +48,18 @@ public:
 	float get_CameraX() { return _cameraX; }
 	float get_CameraY() { return _cameraY; }
 
-	//카메라가 맵 밖으로 나가지 못하게 
+
 	void Camera_Correction();
 	void Camera_Move();
-	// 월드 DC
+
 	HDC getWorldDC() { return _worldDC; }
 	image* getWorldImage() { return _worldImage; }
-	// 맵툴 DC
-	/*HDC getmapToolDC() { return _mapToolDC; }
-	image* getmapToolImage() { return _mapToolImage; }*/
 
-	// 맵툴 사이즈
+
 	void set_CameraMapTielSize(float x, float y);
 	float get_CameraMapTileSize_X() { return _cameraMapTileSizeX; }
 	float get_CameraMapTileSize_Y() { return _cameraMapTileSizeY; }
 
-	// 맵툴 좌표
 	void set_CameraMapTool_XY(int x, int y);
 	void set_CameraMapTool_XY(float x, float y);
 	void set_CameraMapTool_XY(POINT xy);
@@ -78,7 +71,6 @@ public:
 	void CameraMapTool_Correction();
 	void CameraMapTool_Move();
 
-	//카메라 흔들리는보정 
 	void Camera_WorldDC_Shake();
 	RECT getCamera_Rect() { return _cameraRect; }
 	void set_CameraPos_Update(float x, float y);

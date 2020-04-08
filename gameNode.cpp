@@ -93,12 +93,6 @@ LRESULT gameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 
 		break;
 
-		//목이 아파서 잠시 주석으로 남김 감기조심해라
-		//굳이 이렇게 하는 이유는 옛날에는 스테이지 기획을 기획자들이 하다보니
-		//MFC 등으로 빠르게 맵툴을 만들어서 기획파트에 넘겨주는 일이 다반사였음
-		//그래서 심미적요인을 빼고 빠르게 기능만 탑재해서 넘겼었음.
-		//굳이 윈도우 메시지를 사용하지 않고 우리 평소에 하던대로 하면 
-		//이런 난리는 안쳐도 됩니당
 		case WM_MOUSEMOVE:
 			_ptMouse.x = static_cast<float>(LOWORD(lParam));
 			_ptMouse.y = static_cast<float>(HIWORD(lParam));

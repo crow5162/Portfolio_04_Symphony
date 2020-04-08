@@ -25,10 +25,7 @@ public:
 	image* addFrameImage(string strKey, const char* fileName, float x, float y, int width, int height, int frameX, int frameY, bool trans, COLORREF transColor);
 	image* addFrameImage(string strKey, const char* fileName, int width, int height, int frameX, int frameY, bool trans, COLORREF transColor);
 
-	//이미지 찾는 함수
 	image* findImage(string strKey);
-
-	//이미지 지워주는 함쑤
 	BOOL deleteImage(string strKey);
 
 	BOOL deleteAll();
@@ -37,7 +34,6 @@ public:
 	void render(string strKey, HDC hdc, int destX, int destY);
 	void render(string strKey, HDC hdc, int destX, int destY, int sourX, int sourY, int sourWidth, int sourHeight);
 
-	//프레임렌더 만들어보세욤 여러분 손으로
 	void frameRender(string strKey, HDC hdc, int destX, int destY);
 	void frameRender(string strKey, HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY);
 

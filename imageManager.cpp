@@ -25,7 +25,6 @@ image* imageManager::addImage(string strKey, int width, int height)
 {
 	image* img = findImage(strKey);
 
-	//만약에 내가 찾으려던 이미지가 이미 등록되어있으면 걔를 반환
 	if (img) return img;
 
 	img = new image;
@@ -46,7 +45,6 @@ image * imageManager::addImage(string strKey, const char * fileName, int width, 
 {
 	image* img = findImage(strKey);
 
-	//만약에 내가 찾으려던 이미지가 이미 등록되어있으면 걔를 반환
 	if (img) return img;
 
 	img = new image;
@@ -67,7 +65,6 @@ image * imageManager::addFrameImage(string strKey, const char * fileName, float 
 {
 	image* img = findImage(strKey);
 
-	//만약에 내가 찾으려던 이미지가 이미 등록되어있으면 걔를 반환
 	if (img) return img;
 
 	img = new image;
@@ -88,7 +85,6 @@ image * imageManager::addFrameImage(string strKey, const char * fileName, int wi
 {
 	image* img = findImage(strKey);
 
-	//만약에 내가 찾으려던 이미지가 이미 등록되어있으면 걔를 반환
 	if (img) return img;
 
 	img = new image;
@@ -141,7 +137,6 @@ BOOL imageManager::deleteAll()
 
 	for (; iter != _mImageList.end();)
 	{
-		//맵컨테이너 안에 image* 정보가 있다면
 		if (iter->second != NULL)
 		{
 			iter->second->release();

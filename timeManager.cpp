@@ -38,7 +38,6 @@ void timeManager::render(HDC hdc)
 	char str[256];
 	string frameRate;
 
-	//FPS / WorldTime / ElapsedTime
 	SetTextColor(hdc, RGB(255, 255, 255));
 	SetBkMode(hdc, TRANSPARENT);
 

@@ -6,7 +6,6 @@ cameraManager::cameraManager()
 	_cameraSizeX = WINSIZEX;
 	_cameraSizeY = WINSIZEY;
 
-	//초기값 플레이어 위치로 할 예정 
 	_cameraX = 75;
 	_cameraY = 220;
 
@@ -16,10 +15,6 @@ cameraManager::cameraManager()
 
 	_isCameraMoveX = false;
 	_isCameraMoveY = false;
-
-	/*_mapToolImage = new image;
-	_mapToolImage = IMAGEMANAGER->addImage("mapToolMap", 5200, 5200);
-	_mapToolDC = _mapToolImage->getMemDC();*/
 
 	_cameraWorldSizeX = 2080;
 	_cameraWorldSizeY = 2080;
@@ -116,9 +111,6 @@ void cameraManager::set_CameraXY(float x, float y, bool fast, bool cameracorrect
 		if (_cameraX > winX) _cameraX = winX;
 	}
 
-	/*_cameraX = x - _cameraSizeX / 2.0f;
-	_cameraY = y - _cameraSizeY / 2.0f;*/
-
 	if(cameracorrection) Camera_Correction();
 	_cameraRect = RectMake(_cameraX, _cameraY, WINSIZEX, WINSIZEY);  // RECT 업데이트 
 }
@@ -154,7 +146,7 @@ void cameraManager::Camera_Correction()
 void cameraManager::Camera_Move()
 {
 }
-//■■■■■■■■■■■■■■■■■■■■■■■■■맵툴 사이즈■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
 void cameraManager::set_CameraMapTielSize(float x, float y)
 {
 	_cameraSizeX = x;

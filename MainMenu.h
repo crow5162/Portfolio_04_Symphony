@@ -10,7 +10,6 @@ enum GameModeSelect
 class MainMenu : public gameNode
 {
 private:
-	//image* _backGround;
 
 	bool _isStart;
 	bool _startGame;
